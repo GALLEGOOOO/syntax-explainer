@@ -1,8 +1,8 @@
 {
-  "name": "explicador-palabras-clave",
-  "displayName": "Explicador de palabras clave",
+  "name": "syntax-explainer",
+  "displayName": "Syntax Explainer",
   "description": "Explica en español palabras clave de JS/TS, React, HTML, CSS, PHP, Python, Java y SQL al pasar el ratón.",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publisher": "arnau",
   "license": "MIT",
   "engines": {
@@ -25,38 +25,38 @@
     "onLanguage:python",
     "onLanguage:java",
     "onLanguage:sql",
-    "onCommand:explicador.configurarToken",
-    "onCommand:explicador.borrarToken",
-    "onCommand:explicador.actualizar"
+    "onCommand:syntaxExplainer.configurarToken",
+    "onCommand:syntaxExplainer.borrarToken",
+    "onCommand:syntaxExplainer.actualizar"
   ],
   "contributes": {
     "configuration": {
-      "title": "Explicador de palabras clave",
+      "title": "Syntax Explainer",
       "properties": {
-        "explicadorPalabrasClave.enabled": {
+        "syntaxExplainer.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Mostrar explicaciones en español al pasar el ratón sobre palabras clave."
         },
-        "explicadorPalabrasClave.remoteUrl": {
+        "syntaxExplainer.remoteUrl": {
           "type": "string",
-          "default": "https://api.github.com/repos/GALLEGOOOO/explicador-palabras-clave/contents/diccionario.json",
-          "description": "URL del diccionario remoto JSON {lenguaje: {palabra: texto}}. Para la API de GitHub (repo privado) se usa el token guardado con \"Explicador: Configurar token de GitHub\". Déjalo vacío para usar solo el diccionario local."
+          "default": "https://api.github.com/repos/GALLEGOOOO/syntax-explainer/contents/diccionario.json",
+          "description": "URL del diccionario remoto JSON {lenguaje: {palabra: texto}}. Para la API de GitHub (repo privado) se usa el token guardado con \"Syntax Explainer: Configurar token de GitHub\". Déjalo vacío para usar solo el diccionario local."
         }
       }
     },
     "commands": [
       {
-        "command": "explicador.configurarToken",
-        "title": "Explicador: Configurar token de GitHub"
+        "command": "syntaxExplainer.configurarToken",
+        "title": "Syntax Explainer: Configurar token de GitHub"
       },
       {
-        "command": "explicador.borrarToken",
-        "title": "Explicador: Borrar token"
+        "command": "syntaxExplainer.borrarToken",
+        "title": "Syntax Explainer: Borrar token"
       },
       {
-        "command": "explicador.actualizar",
-        "title": "Explicador: Actualizar diccionario ahora"
+        "command": "syntaxExplainer.actualizar",
+        "title": "Syntax Explainer: Actualizar diccionario ahora"
       }
     ]
   },

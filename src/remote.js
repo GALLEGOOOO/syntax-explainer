@@ -1,7 +1,7 @@
 // Descarga del diccionario remoto (sin dependencia de vscode, para poder testearlo con node).
 function isGitHubApi(url) { try { return new URL(url).hostname === 'api.github.com'; } catch { return false; } }
 function buildHeaders(url, token) {
-  const h = { 'User-Agent': 'explicador-palabras-clave', Accept: 'application/json' };
+  const h = { 'User-Agent': 'syntax-explainer', Accept: 'application/json' };
   if (isGitHubApi(url)) {
     h.Accept = 'application/vnd.github.raw';
     h['X-GitHub-Api-Version'] = '2022-11-28';

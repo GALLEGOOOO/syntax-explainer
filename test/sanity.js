@@ -18,7 +18,7 @@ setRemote({}); a.notStrictEqual(l('def', 'python'), 'remoto');
 console.log('OK');
 // remoto
 const r = require('../src/remote'); const fs = require('fs');
-const api = 'https://api.github.com/repos/GALLEGOOOO/explicador-palabras-clave/contents/diccionario.json';
+const api = 'https://api.github.com/repos/GALLEGOOOO/syntax-explainer/contents/diccionario.json';
 const h = r.buildHeaders(api, 'tok');
 a.strictEqual(h.Authorization, 'Bearer tok'); a.strictEqual(h.Accept, 'application/vnd.github.raw'); a.ok(h['User-Agent']);
 a.strictEqual(r.buildHeaders('https://example.com/d.json', 'tok').Authorization, undefined);
