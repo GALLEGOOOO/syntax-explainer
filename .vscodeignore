@@ -3,3 +3,4 @@ test/**
 *.vsix
 diccionario.json
 tools/**
+logo-concepts/**

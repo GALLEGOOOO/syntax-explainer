@@ -1,3 +1,5 @@
+<p align="center"><img src="images/icon.png" width="96" alt="Syntax Explainer"></p>
+
 <h1 align="center">🧠 Syntax Explainer</h1>
 
 <p align="center">
@@ -6,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img alt="Versión" src="https://img.shields.io/badge/versión-0.2.0-7c3aed?style=for-the-badge">
+  <img alt="Versión" src="https://img.shields.io/badge/versión-0.2.1-7c3aed?style=for-the-badge">
   <img alt="Lenguajes" src="https://img.shields.io/badge/lenguajes-20-0ea5e9?style=for-the-badge">
   <img alt="Frameworks" src="https://img.shields.io/badge/frameworks-React_·_Vue_·_Angular-61dafb?style=for-the-badge">
   <img alt="Entradas" src="https://img.shields.io/badge/explicaciones-2172-f59e0b?style=for-the-badge">
@@ -87,7 +89,7 @@ function — Declara una función: un bloque de código que puedes ejecutar.
 
 ## 📦 Instalación
 
-1. Descarga `syntax-explainer-0.2.0.vsix`.
+1. Descarga `syntax-explainer-0.2.1.vsix`.
 2. Abre la Paleta de comandos (`Ctrl+Shift+P` / `Cmd+Shift+P`).
 3. Ejecuta **`Extensions: Install from VSIX...`** y elige el archivo.
 4. Recarga la ventana si te lo pide. ¡Listo! 🎉
