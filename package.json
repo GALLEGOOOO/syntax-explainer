@@ -1,0 +1,67 @@
+{
+  "name": "explicador-palabras-clave",
+  "displayName": "Explicador de palabras clave",
+  "description": "Explica en español palabras clave de JS/TS, React, HTML, CSS, PHP, Python, Java y SQL al pasar el ratón.",
+  "version": "0.0.3",
+  "publisher": "arnau",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onLanguage:html",
+    "onLanguage:css",
+    "onLanguage:scss",
+    "onLanguage:less",
+    "onLanguage:php",
+    "onLanguage:python",
+    "onLanguage:java",
+    "onLanguage:sql",
+    "onCommand:explicador.configurarToken",
+    "onCommand:explicador.borrarToken",
+    "onCommand:explicador.actualizar"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Explicador de palabras clave",
+      "properties": {
+        "explicadorPalabrasClave.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mostrar explicaciones en español al pasar el ratón sobre palabras clave."
+        },
+        "explicadorPalabrasClave.remoteUrl": {
+          "type": "string",
+          "default": "https://api.github.com/repos/GALLEGOOOO/explicador-palabras-clave/contents/diccionario.json",
+          "description": "URL del diccionario remoto JSON {lenguaje: {palabra: texto}}. Para la API de GitHub (repo privado) se usa el token guardado con \"Explicador: Configurar token de GitHub\". Déjalo vacío para usar solo el diccionario local."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "explicador.configurarToken",
+        "title": "Explicador: Configurar token de GitHub"
+      },
+      {
+        "command": "explicador.borrarToken",
+        "title": "Explicador: Borrar token"
+      },
+      {
+        "command": "explicador.actualizar",
+        "title": "Explicador: Actualizar diccionario ahora"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node test/sanity.js",
+    "diccionario": "node -e \"const fs=require('fs');const o={};for(const f of fs.readdirSync('src/keywords').sort())o[f.slice(0,-5)]=JSON.parse(fs.readFileSync('src/keywords/'+f));fs.writeFileSync('diccionario.json',JSON.stringify(o,null,2)+'\\\\n')\""
+  }
+}
