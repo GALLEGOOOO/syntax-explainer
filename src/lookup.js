@@ -6,10 +6,10 @@ for (const f of fs.readdirSync(dir)) if (f.endsWith('.json')) dicts[f.slice(0, -
 
 // languageId de VS Code -> diccionarios, de MENOR a MAYOR prioridad (el último gana).
 const LANG_MAP = {
-  javascript: ['javascript'],
-  typescript: ['angular', 'javascript', 'typescript'],
-  javascriptreact: ['javascript', 'react'],
-  typescriptreact: ['javascript', 'typescript', 'react'],
+  javascript: ['rxjs', 'javascript'],
+  typescript: ['rxjs', 'angular', 'javascript', 'typescript'],
+  javascriptreact: ['rxjs', 'javascript', 'react'],
+  typescriptreact: ['rxjs', 'javascript', 'typescript', 'react'],
   html: ['angular', 'html'],
   vue: ['javascript', 'html', 'vue'],
   css: ['css'], scss: ['css'], less: ['css'],
@@ -121,7 +121,9 @@ function explainAt(line, col, languageId) {
       const start = m.index, end = start + m[0].length;
       if (start > col) break;
       if (col >= start && col <= end) {
-        const text = lookup(m[0], languageId);
+        // Llamada suelta (no tras un punto), p. ej. of(1) o map(x => x) en RxJS: prueba antes la clave "palabra()".
+        const call = /^\s*\(/.test(line.slice(end)) && !/\.\s*$/.test(line.slice(0, start));
+        const text = (call && rawLookup(m[0] + '()', LANG_MAP[languageId])) || lookup(m[0], languageId);
         if (text && contextAllows(languageId, m[0], line, start, end) && !insideStringOrComment(line, start, languageId))
           return { word: m[0], text, start, end };
         break;

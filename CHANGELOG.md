@@ -2,6 +2,13 @@
 
 Todos los cambios importantes de **Syntax Explainer**.
 
+## [Sin publicar]
+### Añadido
+- APIs de JavaScript/TypeScript: métodos de `Date` (`getFullYear`, `getMonth`, `setMonth`, `toLocaleString`…) y más (+30).
+- Angular: `HttpErrorResponse`, `HttpParams`, `HttpHeaders`, `OnChanges`, `SimpleChanges`… (+24).
+- Nuevo diccionario RxJS (44): `Subscription`, `forkJoin`, `catchError`, `switchMap`, `BehaviorSubject`, `unsubscribe`…
+- Las llamadas sueltas como `of(...)`, `map(...)` o `from(...)` se explican como RxJS; `.map(` sigue siendo de arrays y `for...of` no cambia.
+
 ## [0.3.0] - 2026-10-22
 ### Eliminado
 - Diccionario remoto (ajuste `syntaxExplainer.remoteUrl`, descarga, caché y comando "Actualizar diccionario ahora").

@@ -29,7 +29,7 @@
 
 - 💬 **Explicaciones en español** claras y pensadas para principiantes, en una o dos frases.
 - 🤝 **No sustituye nada:** el hover normal (tipos, firmas, documentación) sigue apareciendo y la explicación se añade al lado.
-- 🌍 **20 lenguajes y formatos + React, Vue y Angular**, con **2172 explicaciones:** JavaScript, TypeScript, React, Vue, Angular, HTML, CSS, PHP, Python, Java, C#, C, C++, Go, Rust, Kotlin, Swift, Dart, Bash, SQL, JSON, YAML y Markdown.
+- 🌍 **20 lenguajes y formatos + React, Vue y Angular**, con **2270 explicaciones:** JavaScript, TypeScript, React, Vue, Angular, HTML, CSS, PHP, Python, Java, C#, C, C++, Go, Rust, Kotlin, Swift, Dart, Bash, SQL, JSON, YAML y Markdown.
 - 📚 **Más que palabras clave:** métodos (`map`, `filter`, `push`…), funciones integradas (`len`, `array_map`, `malloc`…), hooks, directivas, propiedades CSS, unidades, tipos utilitarios de TypeScript y comandos de terminal.
 - 🎯 **Inteligente:** solo palabras completas, ignora cadenas y comentarios, sin distinguir mayúsculas en SQL y HTML, entiende `#include`, `println!`, `$HOME`, `v-if`, `*ngIf`, `@media` o `16px`, y en JSON/YAML solo explica claves de configuración conocidas.
 - ✏️ **Fácil de ampliar:** un archivo JSON por lenguaje.
@@ -61,7 +61,8 @@ function — Declara una función: un bloque de código que puedes ejecutar.
 | 🟦 | TypeScript | `typescript`, `typescriptreact` (+ JS) | **59** |
 | ⚛️ | React / JSX | `javascriptreact`, `typescriptreact` | **78** |
 | 🟩 | Vue | `vue` (+ JS + HTML) | **48** |
-| 🅰️ | Angular | `typescript`, `html` | **49** |
+| 🅰️ | Angular | `typescript`, `html` | **73** |
+| 🔁 | RxJS | `javascript`, `typescript`, `jsx`, `tsx` | **44** |
 | 🟧 | HTML | `html`, `vue` | **158** |
 | 🎨 | CSS | `css`, `scss`, `less` | **180** |
 | 🐘 | PHP | `php` | **156** |
@@ -114,7 +115,7 @@ Cuando esté publicada, busca **Syntax Explainer** en la vista de extensiones (`
 
 ## ✏️ Añadir palabras
 
-Cada diccionario tiene su archivo en `src/keywords/<nombre>.json` (`angular`, `c`, `cpp`, `csharp`, `css`, `dart`, `go`, `html`, `java`, `javascript`, `json`, `kotlin`, `markdown`, `php`, `python`, `react`, `rust`, `shellscript`, `sql`, `swift`, `typescript`, `vue`, `yaml`):
+Cada diccionario tiene su archivo en `src/keywords/<nombre>.json` (`angular`, `c`, `cpp`, `csharp`, `css`, `dart`, `go`, `html`, `java`, `javascript`, `json`, `kotlin`, `markdown`, `php`, `python`, `react`, `rust`, `rxjs`, `shellscript`, `sql`, `swift`, `typescript`, `vue`, `yaml`):
 
 ```json
 {
@@ -126,7 +127,7 @@ Cada diccionario tiene su archivo en `src/keywords/<nombre>.json` (`angular`, `c
 - ➖ En **CSS** se admiten guiones, `@` y `:` (`justify-content`, `@media`, `:hover`).
 - 💲 En **PHP** y **Bash** puedes incluir `$` (`$this`, `$HOME`, `$#`).
 - #️⃣ En **C/C++** las directivas llevan `#` (`#include`); en **Rust** las macros llevan `!` (`println!`).
-- 🔗 Algunos lenguajes combinan diccionarios (TS = JS + TypeScript + Angular, Vue = JS + HTML + Vue, C++ = C + C++); gana el más específico.
+- 🔗 Algunos lenguajes combinan diccionarios (TS = JS + TypeScript + Angular + RxJS, Vue = JS + HTML + Vue, C++ = C + C++); gana el más específico.
 - 🧰 También puedes añadir entradas en bloque: `node tools/add.js <nombre> < lista.txt` (una línea `palabra|texto` por entrada).
 
 Después:

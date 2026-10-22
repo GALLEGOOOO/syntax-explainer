@@ -93,6 +93,31 @@ a.strictEqual(w2('@media (max-width: 600px) {', 2, 'css'), '@media');
 a.strictEqual(w2('  width: 100vh;', 11, 'css'), '100vh');
 a.strictEqual(w2('  color: red !important;', 16, 'css'), '!important');
 console.log('OK css');
+
+// 6. APIs y librerías: Date/Array/String, Angular y RxJS (también tras un punto)
+const sample = {
+  HttpErrorResponse: 'typescript', Subscription: 'typescript', forkJoin: 'typescript', catchError: 'typescript', pipe: 'typescript',
+  subscribe: 'typescript', unsubscribe: 'typescript', getFullYear: 'typescript', getMonth: 'typescript', toLocaleString: 'typescript',
+  setMonth: 'typescript', getDate: 'typescript', some: 'typescript', find: 'typescript', forEach: 'typescript', split: 'typescript',
+  Number: 'typescript', String: 'typescript', implements: 'typescript', OnInit: 'typescript', OnDestroy: 'typescript',
+  Input: 'typescript', Component: 'typescript', HttpParams: 'typescript', HttpHeaders: 'typescript', BehaviorSubject: 'typescript',
+  switchMap: 'typescript', tap: 'typescript', next: 'typescript', complete: 'typescript', ngOnChanges: 'typescript'
+};
+for (const [k, lang] of Object.entries(sample)) a.ok(l(k, lang), `falta ${k} en ${lang}`);
+for (const lang of ['javascript', 'javascriptreact', 'typescriptreact']) { a.ok(l('getFullYear', lang)); a.ok(l('forkJoin', lang)); }
+a.ok(l('forkJoin', 'javascript')); a.strictEqual(l('HttpErrorResponse', 'javascript'), undefined);
+const wt = (line, col) => x(line, col, 'typescript') || {};
+a.strictEqual(wt('const y = now.getFullYear();', 16).word, 'getFullYear');
+a.strictEqual(wt('d.setMonth(d.getMonth() + 1);', 4).word, 'setMonth');
+a.strictEqual(wt('this.sub?.unsubscribe();', 12).word, 'unsubscribe');
+a.ok(wt('return of([]);', 8).text.includes('RxJS'), 'of( es RxJS');
+a.ok(wt('for (const v of xs) {}', 14).text.includes('for...of'), 'for...of sigue igual');
+a.ok(wt('pipe(map(x => x * 2))', 6).text.includes('RxJS'), 'map( suelto es RxJS');
+a.ok(wt('xs.map(x => x * 2)', 4).text.includes('array'), '.map( es de arrays');
+a.ok(wt("import { of } from 'rxjs';", 15).text.includes('import'), 'from de import sigue igual');
+a.ok(wt('forkJoin([a$, b$]).pipe(catchError(() => of(null)))', 26).text.includes('RxJS'));
+a.ok(wt('const s = String(n);', 11).text.includes('texto'));
+console.log('OK apis');
 const ext = fs.readFileSync(path.join(__dirname, '..', 'src', 'extension.js'), 'utf8');
 a.ok(!/secrets|token|https?:/i.test(ext), 'la extensión no debe usar red ni tokens');
 console.log('OK');
