@@ -2,3 +2,4 @@ test/**
 .vscodeignore
 *.vsix
 diccionario.json
+tools/**

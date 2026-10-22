@@ -6,9 +6,10 @@
 </p>
 
 <p align="center">
-  <img alt="Versión" src="https://img.shields.io/badge/versión-0.1.1-7c3aed?style=for-the-badge">
-  <img alt="Lenguajes" src="https://img.shields.io/badge/lenguajes-9-0ea5e9?style=for-the-badge">
-  <img alt="Entradas" src="https://img.shields.io/badge/explicaciones-369-f59e0b?style=for-the-badge">
+  <img alt="Versión" src="https://img.shields.io/badge/versión-0.2.0-7c3aed?style=for-the-badge">
+  <img alt="Lenguajes" src="https://img.shields.io/badge/lenguajes-20-0ea5e9?style=for-the-badge">
+  <img alt="Frameworks" src="https://img.shields.io/badge/frameworks-React_·_Vue_·_Angular-61dafb?style=for-the-badge">
+  <img alt="Entradas" src="https://img.shields.io/badge/explicaciones-2172-f59e0b?style=for-the-badge">
   <img alt="Idioma" src="https://img.shields.io/badge/idioma-español-ef4444?style=for-the-badge">
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-22c55e?style=for-the-badge">
   <img alt="Hecho con amor" src="https://img.shields.io/badge/hecho_con-❤️-ec4899?style=for-the-badge">
@@ -26,8 +27,9 @@
 
 - 💬 **Explicaciones en español** claras y pensadas para principiantes, en una o dos frases.
 - 🤝 **No sustituye nada:** el hover normal (tipos, firmas, documentación) sigue apareciendo y la explicación se añade al lado.
-- 🌍 **9 lenguajes:** JavaScript, TypeScript, React/JSX, HTML, CSS (SCSS/Less), PHP, Python, Java y SQL.
-- 🎯 **Inteligente:** solo palabras completas, ignora cadenas y comentarios, sin distinguir mayúsculas en SQL y HTML.
+- 🌍 **20 lenguajes y formatos + React, Vue y Angular**, con **2172 explicaciones:** JavaScript, TypeScript, React, Vue, Angular, HTML, CSS, PHP, Python, Java, C#, C, C++, Go, Rust, Kotlin, Swift, Dart, Bash, SQL, JSON, YAML y Markdown.
+- 📚 **Más que palabras clave:** métodos (`map`, `filter`, `push`…), funciones integradas (`len`, `array_map`, `malloc`…), hooks, directivas, propiedades CSS, unidades, tipos utilitarios de TypeScript y comandos de terminal.
+- 🎯 **Inteligente:** solo palabras completas, ignora cadenas y comentarios, sin distinguir mayúsculas en SQL y HTML, entiende `#include`, `println!`, `$HOME`, `v-if`, `*ngIf`, `@media` o `16px`, y en JSON/YAML solo explica claves de configuración conocidas.
 - ☁️ **Diccionario remoto opcional** desde un repo privado de GitHub, con caché y actualización cada 24 h.
 - 🔐 **Token seguro** en el almacén de secretos del editor, nunca en los ajustes.
 - ✏️ **Fácil de ampliar:** un archivo JSON por lenguaje.
@@ -55,18 +57,37 @@ function — Declara una función: un bloque de código que puedes ejecutar.
 
 | | Lenguaje | IDs de VS Code | Entradas |
 |:-:|---|---|:-:|
-| 🟨 | JavaScript / TypeScript | `javascript`, `typescript` | **65** |
-| ⚛️ | React / JSX | `javascriptreact`, `typescriptreact` (+ JS) | **30** |
-| 🟧 | HTML | `html` | **52** |
-| 🎨 | CSS | `css`, `scss`, `less` | **46** |
-| 🐘 | PHP | `php` | **45** |
-| 🐍 | Python | `python` | **44** |
-| ☕ | Java | `java` | **42** |
-| 🗄️ | SQL | `sql` | **45** |
+| 🟨 | JavaScript | `javascript` (+ base de TS, JSX, Vue) | **211** |
+| 🟦 | TypeScript | `typescript`, `typescriptreact` (+ JS) | **59** |
+| ⚛️ | React / JSX | `javascriptreact`, `typescriptreact` | **78** |
+| 🟩 | Vue | `vue` (+ JS + HTML) | **48** |
+| 🅰️ | Angular | `typescript`, `html` | **49** |
+| 🟧 | HTML | `html`, `vue` | **158** |
+| 🎨 | CSS | `css`, `scss`, `less` | **180** |
+| 🐘 | PHP | `php` | **156** |
+| 🐍 | Python | `python` | **149** |
+| ☕ | Java | `java` | **149** |
+| 🟪 | C# | `csharp` | **96** |
+| 🔧 | C | `c`, `cpp` | **77** |
+| ➕ | C++ | `cpp` (+ C) | **61** |
+| 🐹 | Go | `go` | **72** |
+| 🦀 | Rust | `rust` | **84** |
+| 🟣 | Kotlin | `kotlin` | **78** |
+| 🍎 | Swift | `swift` | **77** |
+| 🎯 | Dart / Flutter | `dart` | **77** |
+| 🐚 | Bash / Shell | `shellscript` | **75** |
+| 🗄️ | SQL | `sql` | **135** |
+| 📦 | JSON (claves de package.json, tsconfig…) | `json`, `jsonc` | **41** |
+| ⚙️ | YAML (GitHub Actions, Docker Compose, Kubernetes) | `yaml` | **40** |
+| 📝 | Markdown | `markdown` | **22** |
+| | **Total** | | **2172** |
+
+> [!NOTE]
+> Kotlin, Swift, Dart, Vue y Rust necesitan que tengas instalada la extensión de ese lenguaje para que el editor reconozca los archivos.
 
 ## 📦 Instalación
 
-1. Descarga `syntax-explainer-0.1.1.vsix`.
+1. Descarga `syntax-explainer-0.2.0.vsix`.
 2. Abre la Paleta de comandos (`Ctrl+Shift+P` / `Cmd+Shift+P`).
 3. Ejecuta **`Extensions: Install from VSIX...`** y elige el archivo.
 4. Recarga la ventana si te lo pide. ¡Listo! 🎉
@@ -113,7 +134,7 @@ La extensión descarga `diccionario.json` del repo privado `GALLEGOOOO/syntax-ex
 
 ## ✏️ Añadir palabras
 
-Cada lenguaje tiene su archivo en `src/keywords/<lenguaje>.json` (`javascript`, `react`, `html`, `css`, `php`, `python`, `java`, `sql`):
+Cada diccionario tiene su archivo en `src/keywords/<nombre>.json` (`angular`, `c`, `cpp`, `csharp`, `css`, `dart`, `go`, `html`, `java`, `javascript`, `json`, `kotlin`, `markdown`, `php`, `python`, `react`, `rust`, `shellscript`, `sql`, `swift`, `typescript`, `vue`, `yaml`):
 
 ```json
 {
@@ -123,7 +144,10 @@ Cada lenguaje tiene su archivo en `src/keywords/<lenguaje>.json` (`javascript`, 
 
 - 🔡 En **SQL** y **HTML** escribe la palabra en minúsculas.
 - ➖ En **CSS** se admiten guiones, `@` y `:` (`justify-content`, `@media`, `:hover`).
-- 💲 En **PHP** puedes incluir `$` (`$this`, `$_POST`).
+- 💲 En **PHP** y **Bash** puedes incluir `$` (`$this`, `$HOME`, `$#`).
+- #️⃣ En **C/C++** las directivas llevan `#` (`#include`); en **Rust** las macros llevan `!` (`println!`).
+- 🔗 Algunos lenguajes combinan diccionarios (TS = JS + TypeScript + Angular, Vue = JS + HTML + Vue, C++ = C + C++); gana el más específico.
+- 🧰 También puedes añadir entradas en bloque: `node tools/add.js <nombre> < lista.txt` (una línea `palabra|texto` por entrada).
 
 Después:
 
@@ -160,6 +184,12 @@ Al cambiar el identificador de la extensión, el token y la caché anteriores no
 <summary><b>¿En HTML sale la explicación sobre texto normal?</b></summary>
 
 Sí, en HTML las palabras coinciden en cualquier parte del archivo (por ejemplo, «a» en una frase). Lo mejoraremos en próximas versiones.
+</details>
+
+<details>
+<summary><b>¿Por qué en un archivo TypeScript aparecen explicaciones de Angular?</b></summary>
+
+Los términos de Angular (<code>ngOnInit</code>, <code>Component</code>, <code>signal</code>…) se aplican a todos los archivos TypeScript y HTML, porque el editor no distingue un proyecto Angular de otro. Tienen la prioridad más baja, así que nunca tapan una explicación de JavaScript o TypeScript.
 </details>
 
 ---

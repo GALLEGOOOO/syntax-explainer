@@ -1,5 +1,5 @@
 const vscode = require('vscode');
-const { LANG_MAP, WORD_REGEX, lookup, insideStringOrComment, setRemote } = require('./lookup');
+const { LANG_MAP, explainAt, setRemote } = require('./lookup');
 const { isGitHubApi, fetchJson, isValidDictionary } = require('./remote');
 const CACHE_KEY = 'remoteDictionary';
 const TOKEN_KEY = 'syntaxExplainer.githubToken';
@@ -56,14 +56,16 @@ function activate(context) {
   const provider = {
     provideHover(document, position) {
       if (!cfg().get('enabled', true)) return;
-      const lang = document.languageId;
-      const range = document.getWordRangeAtPosition(position, WORD_REGEX[lang] || WORD_REGEX.default);
-      if (!range) return;
-      const word = document.getText(range);
-      const text = lookup(word, lang);
-      if (!text) return;
-      if (insideStringOrComment(document.lineAt(position.line).text, range.start.character, lang)) return;
-      return new vscode.Hover(new vscode.MarkdownString(`**${word}** — ${text}`), range);
+      const line = document.lineAt(position.line).text;
+      if (line.length > 2000) return; // líneas enormes (minificadas): no merece la pena
+      const r = explainAt(line, position.character, document.languageId);
+      if (!r) return;
+      const md = new vscode.MarkdownString();
+      md.appendMarkdown('**');
+      md.appendText(r.word);
+      md.appendMarkdown('** — ');
+      md.appendText(r.text);
+      return new vscode.Hover(md, new vscode.Range(position.line, r.start, position.line, r.end));
     }
   };
   context.subscriptions.push(vscode.languages.registerHoverProvider(Object.keys(LANG_MAP), provider));
