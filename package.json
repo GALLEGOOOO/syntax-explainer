@@ -2,13 +2,18 @@
   "name": "syntax-explainer",
   "displayName": "Syntax Explainer",
   "description": "Explicaciones en español de palabras clave, funciones y etiquetas al pasar el ratón, para 20 lenguajes y formatos más React, Vue y Angular: JavaScript, TypeScript, React, Vue, Angular, HTML, CSS, Python, Java, C, C++, C#, Go, Rust, PHP, SQL y más. Ideal para aprender a programar.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "publisher": "GALLEGOSSJ",
   "author": "GALLEGOSSJ",
   "license": "MIT",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/GALLEGOOOO/syntax-explainer"
+  },
+  "homepage": "https://github.com/GALLEGOOOO/syntax-explainer#readme",
+  "bugs": {
+    "url": "https://github.com/GALLEGOOOO/syntax-explainer/issues"
   },
   "categories": [
     "Programming Languages",
@@ -80,10 +85,7 @@
     "onLanguage:json",
     "onLanguage:jsonc",
     "onLanguage:yaml",
-    "onLanguage:markdown",
-    "onCommand:syntaxExplainer.configurarToken",
-    "onCommand:syntaxExplainer.borrarToken",
-    "onCommand:syntaxExplainer.actualizar"
+    "onLanguage:markdown"
   ],
   "contributes": {
     "configuration": {
@@ -93,32 +95,11 @@
           "type": "boolean",
           "default": true,
           "description": "Mostrar explicaciones en español al pasar el ratón sobre palabras clave."
-        },
-        "syntaxExplainer.remoteUrl": {
-          "type": "string",
-          "default": "https://api.github.com/repos/GALLEGOOOO/syntax-explainer/contents/diccionario.json",
-          "description": "URL del diccionario remoto JSON {lenguaje: {palabra: texto}}. Para la API de GitHub (repo privado) se usa el token guardado con \"Syntax Explainer: Configurar token de GitHub\". Déjalo vacío para usar solo el diccionario local."
         }
       }
-    },
-    "commands": [
-      {
-        "command": "syntaxExplainer.configurarToken",
-        "title": "Syntax Explainer: Configurar token de GitHub"
-      },
-      {
-        "command": "syntaxExplainer.borrarToken",
-        "title": "Syntax Explainer: Borrar token"
-      },
-      {
-        "command": "syntaxExplainer.actualizar",
-        "title": "Syntax Explainer: Actualizar diccionario ahora"
-      }
-    ]
+    }
   },
   "scripts": {
-    "test": "node test/sanity.js",
-    "diccionario": "node -e \"const fs=require('fs');const o={};for(const f of fs.readdirSync('src/keywords').sort())o[f.slice(0,-5)]=JSON.parse(fs.readFileSync('src/keywords/'+f));fs.writeFileSync('diccionario.json',JSON.stringify(o,null,2)+'\\\\n')\""
-  },
-  "icon": "images/icon.png"
+    "test": "node test/sanity.js"
+  }
 }

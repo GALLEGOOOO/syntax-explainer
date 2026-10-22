@@ -38,15 +38,13 @@ const WORD_REGEX = {
 };
 const regexesFor = lang => WORD_REGEX[lang] || WORD_REGEX.default;
 
-let remote = {};
-function setRemote(r) { remote = r && typeof r === 'object' ? r : {}; }
 const has = (o, k) => !!o && Object.prototype.hasOwnProperty.call(o, k);
 
 function rawLookup(word, names) {
   for (let i = names.length - 1; i >= 0; i--) {
     const n = names[i];
     const key = CASE_INSENSITIVE.has(n) ? word.toLowerCase() : word;
-    for (const d of [remote[n], dicts[n]]) if (has(d, key) && typeof d[key] === 'string') return d[key];
+    if (has(dicts[n], key)) return dicts[n][key];
   }
 }
 function lookup(word, languageId = 'javascript') {
@@ -132,4 +130,4 @@ function explainAt(line, col, languageId) {
   }
   return undefined;
 }
-module.exports = { dicts, LANG_MAP, WORD_REGEX, CASE_INSENSITIVE, lookup, insideStringOrComment, explainAt, setRemote };
+module.exports = { dicts, LANG_MAP, WORD_REGEX, CASE_INSENSITIVE, lookup, insideStringOrComment, explainAt };

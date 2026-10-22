@@ -1,7 +1,7 @@
 const a = require('assert');
 const fs = require('fs');
 const path = require('path');
-const { dicts, LANG_MAP, WORD_REGEX, CASE_INSENSITIVE, lookup: l, insideStringOrComment: s, explainAt: x, setRemote } = require('../src/lookup');
+const { dicts, LANG_MAP, WORD_REGEX, CASE_INSENSITIVE, lookup: l, insideStringOrComment: s, explainAt: x } = require('../src/lookup');
 
 // 1. Todos los diccionarios: JSON válido, textos no vacíos, claves en minúsculas donde toca
 const kwDir = path.join(__dirname, '..', 'src', 'keywords');
@@ -86,22 +86,6 @@ a.ok(s('ls # rm', 6, 'shellscript')); a.ok(!s("fn f<'a>(x: &'a str)", 18, 'rust'
 a.ok(s('// fn', 3, 'go')); a.ok(s('let s = "fn"', 9, 'rust'));
 a.ok(!s('#include <x>', 1, 'c'), '#include no es comentario en C');
 
-// 6. Diccionario remoto
-setRemote({ python: { def: 'remoto', nuevo: 'x' }, sql: { join: 'J' }, rust: { fn: 'R' } });
-a.strictEqual(l('def', 'python'), 'remoto'); a.strictEqual(l('nuevo', 'python'), 'x'); a.strictEqual(l('JOIN', 'sql'), 'J'); a.strictEqual(l('fn', 'rust'), 'R');
-setRemote({}); a.notStrictEqual(l('def', 'python'), 'remoto');
-console.log('OK');
-
-const r = require('../src/remote');
-const api = 'https://api.github.com/repos/GALLEGOOOO/syntax-explainer/contents/diccionario.json';
-const h = r.buildHeaders(api, 'tok');
-a.strictEqual(h.Authorization, 'Bearer tok'); a.strictEqual(h.Accept, 'application/vnd.github.raw'); a.ok(h['User-Agent']);
-a.strictEqual(r.buildHeaders('https://example.com/d.json', 'tok').Authorization, undefined);
-a.ok(!r.isGitHubApi('https://api.github.com.evil.com/x'));
-const dic = JSON.parse(fs.readFileSync(__dirname + '/../diccionario.json', 'utf8'));
-a.ok(r.isValidDictionary(dic)); a.deepStrictEqual(dic, dicts, 'diccionario.json desactualizado: npm run diccionario');
-a.ok(!r.isValidDictionary([])); a.ok(!r.isValidDictionary({ a: 'x' }));
-console.log('OK remoto');
 const w2 = (line, col, lang) => (x(line, col, lang) || {}).word;
 a.strictEqual(w2('a:hover { color: red }', 3, 'css'), ':hover');
 a.strictEqual(w2('p::before {', 4, 'css'), '::before');
@@ -109,3 +93,6 @@ a.strictEqual(w2('@media (max-width: 600px) {', 2, 'css'), '@media');
 a.strictEqual(w2('  width: 100vh;', 11, 'css'), '100vh');
 a.strictEqual(w2('  color: red !important;', 16, 'css'), '!important');
 console.log('OK css');
+const ext = fs.readFileSync(path.join(__dirname, '..', 'src', 'extension.js'), 'utf8');
+a.ok(!/secrets|token|https?:/i.test(ext), 'la extensión no debe usar red ni tokens');
+console.log('OK');

@@ -1,6 +1,6 @@
 <p align="center"><img src="images/icon.png" width="96" alt="Syntax Explainer"></p>
 
-<h1 align="center">🧠 Syntax Explainer</h1>
+<h1 align="center">Syntax Explainer</h1>
 
 <p align="center">
   <b>Pasa el ratón sobre una palabra clave y entiende qué hace, en español.</b><br>
@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img alt="Versión" src="https://img.shields.io/badge/versión-0.2.1-7c3aed?style=for-the-badge">
+  <img alt="Versión" src="https://img.shields.io/badge/versión-0.3.0-7c3aed?style=for-the-badge">
   <img alt="Lenguajes" src="https://img.shields.io/badge/lenguajes-20-0ea5e9?style=for-the-badge">
   <img alt="Frameworks" src="https://img.shields.io/badge/frameworks-React_·_Vue_·_Angular-61dafb?style=for-the-badge">
   <img alt="Entradas" src="https://img.shields.io/badge/explicaciones-2172-f59e0b?style=for-the-badge">
@@ -32,10 +32,8 @@
 - 🌍 **20 lenguajes y formatos + React, Vue y Angular**, con **2172 explicaciones:** JavaScript, TypeScript, React, Vue, Angular, HTML, CSS, PHP, Python, Java, C#, C, C++, Go, Rust, Kotlin, Swift, Dart, Bash, SQL, JSON, YAML y Markdown.
 - 📚 **Más que palabras clave:** métodos (`map`, `filter`, `push`…), funciones integradas (`len`, `array_map`, `malloc`…), hooks, directivas, propiedades CSS, unidades, tipos utilitarios de TypeScript y comandos de terminal.
 - 🎯 **Inteligente:** solo palabras completas, ignora cadenas y comentarios, sin distinguir mayúsculas en SQL y HTML, entiende `#include`, `println!`, `$HOME`, `v-if`, `*ngIf`, `@media` o `16px`, y en JSON/YAML solo explica claves de configuración conocidas.
-- ☁️ **Diccionario remoto opcional** desde un repo privado de GitHub, con caché y actualización cada 24 h.
-- 🔐 **Token seguro** en el almacén de secretos del editor, nunca en los ajustes.
 - ✏️ **Fácil de ampliar:** un archivo JSON por lenguaje.
-- 🪶 **Ligero:** sin dependencias.
+- 🪶 **Ligero y privado:** sin dependencias y sin conexión a internet; todo funciona en local.
 
 ## 🖱️ Ejemplo
 
@@ -89,7 +87,18 @@ function — Declara una función: un bloque de código que puedes ejecutar.
 
 ## 📦 Instalación
 
-1. Descarga `syntax-explainer-0.2.1.vsix`.
+### Desde las tiendas
+
+| Tienda | Enlace |
+|---|---|
+| 🟦 Visual Studio Marketplace (VS Code) | _próximamente_ |
+| 🟪 Open VSX (Cursor, VSCodium, Windsurf…) | _próximamente_ |
+
+Cuando esté publicada, busca **Syntax Explainer** en la vista de extensiones (`Ctrl+Shift+X` / `Cmd+Shift+X`) e instálala.
+
+### Desde un archivo `.vsix`
+
+1. Descarga `syntax-explainer-0.3.0.vsix` desde las [releases del repositorio](https://github.com/GALLEGOOOO/syntax-explainer/releases).
 2. Abre la Paleta de comandos (`Ctrl+Shift+P` / `Cmd+Shift+P`).
 3. Ejecuta **`Extensions: Install from VSIX...`** y elige el archivo.
 4. Recarga la ventana si te lo pide. ¡Listo! 🎉
@@ -102,37 +111,6 @@ function — Declara una función: un bloque de código que puedes ejecutar.
 | Ajuste | Tipo | Por defecto | Descripción |
 |---|:-:|---|---|
 | `syntaxExplainer.enabled` | `boolean` | `true` | Activa o desactiva las explicaciones. |
-| `syntaxExplainer.remoteUrl` | `string` | API de GitHub de `GALLEGOOOO/syntax-explainer` | URL del diccionario remoto. Déjalo vacío para usar solo el local. |
-
-## ⌨️ Comandos
-
-| Comando | Qué hace |
-|---|---|
-| `Syntax Explainer: Configurar token de GitHub` | Guarda tu token de forma segura y descarga el diccionario. |
-| `Syntax Explainer: Actualizar diccionario ahora` | Descarga el diccionario remoto al momento. |
-| `Syntax Explainer: Borrar token` | Elimina el token guardado. |
-
-## 🔑 Diccionario remoto (repo privado)
-
-La extensión descarga `diccionario.json` del repo privado `GALLEGOOOO/syntax-explainer` al arrancar y luego cada 24 h. Sus entradas tienen prioridad sobre las locales.
-
-<details>
-<summary><b>👉 Cómo crear el token (2 minutos)</b></summary>
-
-1. En GitHub ve a **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-2. Ponle nombre y caducidad.
-3. En **Repository access** elige **Only select repositories** y marca solo `syntax-explainer`.
-4. En **Permissions → Repository permissions** pon **Contents: Read-only** (Metadata: Read-only se añade solo). Nada más.
-5. Genera el token y cópialo.
-6. En el editor ejecuta **`Syntax Explainer: Configurar token de GitHub`** y pégalo.
-
-</details>
-
-> [!IMPORTANT]
-> El token se guarda cifrado con SecretStorage, **nunca** en `settings.json`.
-
-> [!NOTE]
-> Sin token o sin conexión no pasa nada: se usa la última copia en caché o el diccionario local, sin mensajes de error.
 
 ## ✏️ Añadir palabras
 
@@ -154,13 +132,10 @@ Cada diccionario tiene su archivo en `src/keywords/<nombre>.json` (`angular`, `c
 Después:
 
 ```bash
-npm run diccionario   # regenera diccionario.json
 npm test              # comprueba que todo está bien
 npx @vscode/vsce package
 ```
 
-> [!TIP]
-> Para cambiar textos **sin reinstalar**, edita `diccionario.json` en el repo y ejecuta `Syntax Explainer: Actualizar diccionario ahora`.
 
 ## ❓ Preguntas frecuentes
 
@@ -173,13 +148,7 @@ Es a propósito: la extensión ignora cadenas y comentarios (con una detección 
 <details>
 <summary><b>Tengo dos explicaciones repetidas</b></summary>
 
-Probablemente tienes instalada una versión antigua (<code>arnau.explicador-palabras-clave</code> o <code>arnau.syntax-explainer</code>). Desinstálala: el identificador actual es <code>GALLEGOSSJ.syntax-explainer</code>.
-</details>
-
-<details>
-<summary><b>Tras actualizar, el diccionario remoto no carga</b></summary>
-
-Al cambiar el identificador de la extensión, el token y la caché anteriores no se conservan. Vuelve a ejecutar <code>Syntax Explainer: Configurar token de GitHub</code>.
+Probablemente tienes instalada otra copia o una versión antigua con otro identificador. Desinstálala: el identificador actual es <code>GALLEGOSSJ.syntax-explainer</code>.
 </details>
 
 <details>
@@ -193,6 +162,22 @@ Sí, en HTML las palabras coinciden en cualquier parte del archivo (por ejemplo,
 
 Los términos de Angular (<code>ngOnInit</code>, <code>Component</code>, <code>signal</code>…) se aplican a todos los archivos TypeScript y HTML, porque el editor no distingue un proyecto Angular de otro. Tienen la prioridad más baja, así que nunca tapan una explicación de JavaScript o TypeScript.
 </details>
+
+## 🤝 Contribuir
+
+¿Falta una palabra, una explicación no es clara o has encontrado un error? ¡Toda ayuda es bienvenida!
+
+- 💡 **Proponer palabras o mejoras:** abre un [issue](https://github.com/GALLEGOOOO/syntax-explainer/issues/new) indicando el lenguaje, la palabra y la explicación que propones.
+- 🛠️ **Enviar un pull request:**
+  1. Haz un fork de [GALLEGOOOO/syntax-explainer](https://github.com/GALLEGOOOO/syntax-explainer).
+  2. Añade o corrige entradas en `src/keywords/<lenguaje>.json`.
+  3. Ejecuta `npm test` para comprobar que todo está bien.
+  4. Abre el pull request explicando qué has cambiado.
+- ✍️ **Estilo de las explicaciones:** español claro y pensado para principiantes, una o dos frases, terminadas en punto y, sobre todo, correctas.
+
+## 📜 Licencia
+
+[MIT](LICENSE) © GALLEGOSSJ · Código en [GitHub](https://github.com/GALLEGOOOO/syntax-explainer) · Cambios en el [CHANGELOG](CHANGELOG.md)
 
 ---
 

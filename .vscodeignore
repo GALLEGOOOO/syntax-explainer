@@ -1,6 +1,8 @@
 test/**
-.vscodeignore
-*.vsix
-diccionario.json
 tools/**
 logo-concepts/**
+.vscodeignore
+.gitignore
+*.vsix
+.git/**
+node_modules/**
