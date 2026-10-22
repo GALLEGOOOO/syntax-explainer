@@ -1,16 +1,46 @@
 {
   "name": "syntax-explainer",
   "displayName": "Syntax Explainer",
-  "description": "Explica en español palabras clave de JS/TS, React, HTML, CSS, PHP, Python, Java y SQL al pasar el ratón.",
-  "version": "0.1.0",
-  "publisher": "arnau",
+  "description": "Explicaciones en español de palabras clave al pasar el ratón: JavaScript, TypeScript, React, HTML, CSS, PHP, Python, Java y SQL. Ideal para aprender a programar.",
+  "version": "0.1.1",
+  "publisher": "GALLEGOSSJ",
+  "author": "GALLEGOSSJ",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GALLEGOOOO/syntax-explainer"
+  },
+  "categories": [
+    "Programming Languages",
+    "Education",
+    "Other"
+  ],
+  "keywords": [
+    "español",
+    "spanish",
+    "explicación",
+    "hover",
+    "palabras clave",
+    "keywords",
+    "aprender",
+    "principiantes",
+    "javascript",
+    "typescript",
+    "react",
+    "html",
+    "css",
+    "php",
+    "python",
+    "java",
+    "sql"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": [
-    "Other"
-  ],
   "main": "./src/extension.js",
   "activationEvents": [
     "onLanguage:javascript",
