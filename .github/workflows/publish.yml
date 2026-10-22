@@ -1,0 +1,32 @@
+name: Publicar en Open VSX
+
+on:
+  push:
+    branches: [main]
+    paths: [package.json]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Comprobar si la versión ya está publicada
+        id: check
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://open-vsx.org/api/GALLEGOSSJ/syntax-explainer/$VERSION")
+          if [ "$CODE" = "200" ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Pruebas
+        if: steps.check.outputs.skip == 'false'
+        run: npm test
+      - name: Empaquetar
+        if: steps.check.outputs.skip == 'false'
+        run: npx --yes @vscode/vsce package -o syntax-explainer.vsix
+      - name: Publicar
+        if: steps.check.outputs.skip == 'false'
+        run: npx --yes ovsx publish syntax-explainer.vsix -p "${{ secrets.OVSX_PAT }}"
